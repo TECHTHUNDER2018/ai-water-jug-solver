@@ -64,7 +64,7 @@ Whether you are a student learning AI fundamentals, a developer exploring search
 
 | Algorithm | Strategy | Notes |
 |---|---|---|
-| **Expectimax** | Minimises expected cost over probabilistic outcomes | 80% normal leak, 20% double leak per step |
+| **Expectimax** | Minimizes expected cost over probabilistic outcomes | 80% normal leak, 20% double leak per step |
 
 ### Heuristic Design
 
@@ -247,7 +247,7 @@ v_new = max(0, floor(v - k × multiplier × √v))
 | **Execution Time (ms)** | Wall-clock time from search start to first solution found |
 | **Peak Memory (KB)** | Maximum heap memory allocated during the search (via `tracemalloc`) |
 | **Nodes Expanded** | Total number of states popped from the frontier and evaluated |
-| **b\* Factor** | Effective branching factor — the uniform branching factor *b* such that a tree of depth *d* has *N* nodes. Lower is better. |
+| **b\* Factor** | Effective branching factor — the uniform *b* satisfying `1 + b + b² + … + b^d = N` (nodes expanded at depth *d*). Lower is better. |
 | **Solution Cost** | Total weighted action cost of the returned path |
 | **Heuristic Admissible** | `true` if A\* cost ≤ UCS cost, confirming the heuristic never overestimates |
 
