@@ -1,0 +1,360 @@
+:root {
+    --bg-dark: #05050a;
+    --panel-bg: rgba(15, 23, 42, 0.4);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --accent: #38bdf8;
+    --glass-blur: blur(16px);
+}
+
+body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: radial-gradient(circle at top right, #0f172a, var(--bg-dark) 40%);
+    color: var(--text-main);
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 320px 1fr 280px;
+    height: 100vh;
+    min-height: 750px;
+}
+
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--panel-border);
+}
+
+/* Sidebar */
+.sidebar {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    z-index: 10;
+    overflow-y: auto;
+    border-right: 1px solid var(--panel-border);
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 800;
+}
+
+header h1 span {
+    color: var(--accent);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0 0;
+}
+
+.config-section h2, .metrics-section h2, .log-panel h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group.row {
+    display: flex;
+    gap: 1rem;
+}
+
+.col { flex: 1; }
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.select-wrapper select {
+    appearance: none;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+button {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 0.9rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+}
+
+.glow-effect:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    background: var(--primary-hover);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text-main);
+}
+
+.secondary-btn:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Metrics */
+.metrics-section {
+    transition: opacity 0.5s;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+.metric-card {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.8rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.metric-card .label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.metric-card .value {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+/* Main View */
+.main-view {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.three-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Overlay UI */
+.overlay-ui {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 80%;
+    max-width: 600px;
+}
+
+.action-display {
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.action-display h3 {
+    margin: 0;
+    color: #fca5a5;
+    font-size: 1.4rem;
+}
+
+.action-display p {
+    margin: 0.3rem 0 0 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 100px;
+    gap: 1.5rem;
+}
+
+.playback-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-btn, .play-btn {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 50px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+}
+
+.play-btn {
+    min-width: 110px;
+    background: var(--primary);
+}
+
+.icon-btn:hover:not(:disabled), .play-btn:hover:not(:disabled) {
+    background: var(--primary-hover);
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.speed-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.speed-control label {
+    margin: 0;
+}
+
+.speed-control input[type=range] {
+    width: 100px;
+    height: 4px;
+    padding: 0;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    width: 120px;
+}
+
+.progress-container span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+/* Log Panel */
+.log-panel {
+    padding: 2rem 1.5rem;
+    border-left: 1px solid var(--panel-border);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.history-list li {
+    padding: 0.8rem;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border-left: 3px solid transparent;
+}
+
+.history-list li.active {
+    background: rgba(59, 130, 246, 0.1);
+    border-left-color: var(--primary);
+}
+
+.history-list li .step-num {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+.history-list li.empty-log {
+    background: transparent;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    border: none;
+}

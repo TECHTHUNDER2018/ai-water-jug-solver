@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Water Jug Solver - Premium 3D</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- 3D and Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar glass-panel">
+            <header>
+                <h1>Jug AI <span>Solver</span></h1>
+                <p>Non-linear stochastic planning</p>
+            </header>
+
+            <div class="config-section">
+                <h2>Solver Parameters</h2>
+                <div class="form-group">
+                    <label>Jug Capacities</label>
+                    <input type="text" id="capacities" value="5,7,12" placeholder="e.g. 5,7,12">
+                </div>
+                <div class="form-group">
+                    <label>Start Volumes</label>
+                    <input type="text" id="startVolumes" value="0,0,0" placeholder="e.g. 0,0,0">
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <label>Target</label>
+                        <input type="number" id="target" value="6">
+                    </div>
+                    <div class="col">
+                        <label>Leak (k)</label>
+                        <input type="number" id="k" value="0.5" step="0.1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Search Algorithm</label>
+                    <div class="select-wrapper">
+                        <select id="algorithm">
+                            <option value="ucs">Uniform Cost Search (Dijkstra)</option>
+                            <option value="astar">A* Search (Heuristic)</option>
+                            <option value="bfs">Breadth-First Search</option>
+                            <option value="dfs">Depth-First Search</option>
+                            <option value="greedy">Greedy Best-First Search</option>
+                            <option value="expectimax">Expectimax (Stochastic)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button id="solveBtn" class="primary-btn glow-effect">Run Simulation</button>
+                    <button id="resetBtn" class="secondary-btn">Reset</button>
+                </div>
+            </div>
+
+            <div class="metrics-section" id="metricsPanel" style="opacity: 0.3;">
+                <h2>Performance Metrics</h2>
+                <div class="metrics-grid" id="metricsContent">
+                    <div class="metric-card"><span class="label">Time</span><span class="value" id="m-time">--</span></div>
+                    <div class="metric-card"><span class="label">Memory</span><span class="value" id="m-mem">--</span></div>
+                    <div class="metric-card"><span class="label">Nodes Exp</span><span class="value" id="m-nodes">--</span></div>
+                    <div class="metric-card"><span class="label">Total Cost</span><span class="value" id="m-cost">--</span></div>
+                    <div class="metric-card"><span class="label">b* Factor</span><span class="value" id="m-bstar">--</span></div>
+                    <div class="metric-card"><span class="label">Admissible</span><span class="value" id="m-adm">--</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-view">
+            <div class="three-container" id="three-container">
+                <!-- 3D Canvas injected here -->
+            </div>
+            
+            <div class="overlay-ui">
+                <div class="action-display glass-panel" id="actionDisplay">
+                    <h3 id="actionTitle">Ready to Solve</h3>
+                    <p id="actionDetails">Configure parameters and press Run Simulation.</p>
+                </div>
+
+                <div class="controls-bar glass-panel">
+                    <div class="playback-controls">
+                        <button id="prevBtn" class="icon-btn" disabled>⏮</button>
+                        <button id="playBtn" class="play-btn" disabled>▶ Auto Play</button>
+                        <button id="nextBtn" class="icon-btn" disabled>⏭</button>
+                    </div>
+                    <div class="speed-control">
+                        <label>Speed: <span id="speedVal">1x</span></label>
+                        <input type="range" id="speedSlider" min="0.5" max="3" step="0.5" value="1">
+                    </div>
+                    <div class="progress-container">
+                        <span id="stepCounter">Step: 0 / 0</span>
+                        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Log Panel -->
+        <div class="log-panel glass-panel">
+            <h2>History Log</h2>
+            <ul id="historyLog" class="history-list">
+                <li class="empty-log">Log will populate when solving...</li>
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
