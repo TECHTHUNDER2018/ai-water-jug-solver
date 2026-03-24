@@ -358,3 +358,74 @@ button:disabled {
     font-style: italic;
     border: none;
 }
+
+/* Responsive Mobile Design */
+@media (max-width: 1024px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .app-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 60vh auto;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    /* Config panel at the top */
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--panel-border);
+        padding: 1.5rem 1rem;
+    }
+    
+    /* 3D view in the middle */
+    .main-view {
+        position: relative;
+        min-height: 60vh;
+        width: 100%;
+    }
+    
+    /* Make overlay fit mobile */
+    .overlay-ui {
+        width: 95%;
+        bottom: 1rem;
+        gap: 1rem;
+    }
+    
+    .controls-bar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .playback-controls {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .speed-control {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .progress-container {
+        width: 100%;
+        align-items: center;
+    }
+    
+    /* Log panel at the bottom */
+    .log-panel {
+        border-left: none;
+        border-top: 1px solid var(--panel-border);
+        min-height: 400px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
